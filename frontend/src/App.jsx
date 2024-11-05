@@ -13,6 +13,7 @@ import AllProducts from "./Components/Allproduct";
 import { useEffect, useState } from "react";
 import ProductsByCategory from "./Components/ProductsByCategory";
 import Offers from "./Components/Offers";
+import { ContainerToast } from "./Components/common/Toast/ContainerToast";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -40,6 +41,7 @@ function App() {
       </BrowserRouter>
 
       {isAuthenticated && window.location.pathname != "/" && <Footer />}
+      <ContainerToast />
     </AuthProvider>
   );
 }
