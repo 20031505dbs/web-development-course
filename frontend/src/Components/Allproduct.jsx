@@ -18,6 +18,7 @@ import Categories from "./Categories";
 import NewArrivals from "./NewArrivals";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Toast } from "./common/Toast/Toast";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -56,15 +57,15 @@ function AllProducts() {
         user_id: JSON.parse(localStorage.getItem("user")).id,
       });
       if (response.status === 201) {
-        alert("Item added to cart successfully!");
+        Toast("Item added to cart successfully!");
         const data = await fetchAllProducts();
         setProducts(data);
       } else {
-        alert("Failed to add item to cart");
+        Toast("Failed to add item to cart",'error');
       }
     } catch (error) {
       console.error("Error adding item to cart:", error);
-      alert("Failed to add item to cart");
+      Toast("Failed to add item to cart",'error');
     }
   };
 

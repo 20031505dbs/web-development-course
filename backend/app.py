@@ -24,7 +24,7 @@ app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
-# Configure CORS to allow requests from http://localhost:5173
+# Configure CORS to allow requests from http://localhost:5180
 CORS(app, supports_credentials=True, origins=[os.getenv('FRONTEND_URL')])
 
 # Set up rate limiter
@@ -249,7 +249,6 @@ def get_cart():
         product = cursor.fetchone()
         item['product'] = product
         cart_details.append(item)
-
     cursor.close()
     connection.close()
     return jsonify(cart_details), 200

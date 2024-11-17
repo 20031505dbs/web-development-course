@@ -18,10 +18,10 @@ const CartProduct = () => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await ApiCall("cart", "POST", null, {
+      const response = await ApiCall("cart", "GET", null, {
         user_id: JSON.parse(localStorage.getItem("user")).id,
       });
-      if (response.status === 200) {
+      if (response) {
         setCartItems(response);
       } else {
         console.error("Failed to fetch cart items");
@@ -34,10 +34,9 @@ const CartProduct = () => {
   const removeFromCart = async (product_id) => {
     try {
       const user_id = JSON.parse(localStorage.getItem("user")).id;
-      const response = await axios.delete("http://127.0.0.1:5000/api/cart", {
-        data: { user_id, product_id },
-      });
-      if (response.status === 200) {
+
+           const response = await ApiCall("cart", "DELETE",  { user_id, product_id });
+      if (response) {
         setCartItems((prevItems) =>
           prevItems.filter((item) => item.product_id !== product_id)
         );
